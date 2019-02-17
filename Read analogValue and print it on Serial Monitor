@@ -1,0 +1,21 @@
+/*
+Read analog value & print it in Serial Monitor
+github: http://https://github.com/shaondoc
+Tinkercad: https://www.tinkercad.com/things/bo6hyIukPGF
+*/
+void setup()
+{
+
+  Serial.begin(9600); //Setup Serial monitor to view potentiomiter value
+  
+  
+}
+
+void loop()
+{
+ int value=analogRead(A0); //Read and Store Potentiomiter value
+  Serial.print("The analog value is: ");
+  Serial.println(value);
+  delay(1000); //wait 1000 milisecond
+ 
+}
