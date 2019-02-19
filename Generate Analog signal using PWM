@@ -1,0 +1,20 @@
+/*
+NAME:Generate Analog signal using PWM
+GIT LINK: http://github.com/shaondoc
+tinker : https://www.tinkercad.com/things/69rIV9aMNuq
+*/
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(10,OUTPUT);
+}
+
+void loop()
+{
+  int value=analogRead(A0);
+  int pwm=map(value,0,1023,0,255);
+  analogWrite(10, pwm);
+  Serial.println(pwm);
+  delay(100);
+}
