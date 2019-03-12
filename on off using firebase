@@ -1,0 +1,46 @@
+
+#include <ESP8266WiFi.h>
+#include <FirebaseArduino.h>
+
+#define FIREBASE_HOST "frcbd-1f869.firebaseio.com"
+#define FIREBASE_AUTH "7UN3sy44N8b27QMq3mI1ajIushsYnbvzglsLdvKV"
+#define WIFI_SSID "VOLTAGELAB"
+#define WIFI_PASSWORD "Meer123456"
+
+void setup() {
+  Serial.begin(9600);
+ pinMode(4,OUTPUT);
+  // connect to wifi.
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  Serial.print("connecting");
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print(".");
+    delay(500);
+  }
+  Serial.println();
+  Serial.print("connected: ");
+  Serial.println(WiFi.localIP());
+  
+  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
+}
+
+int n = 0;
+
+void loop() {
+
+//Serial.println(val);
+//Firebase.setFloat("number", val);
+  Firebase.setString("boss-", "hello sorkar");
+ n= Firebase.getInt("relay");
+ Serial.println(n);
+ if(n==1){
+  digitalWrite(4,HIGH);
+ }
+ else if(n==0)
+ {
+  digitalWrite(4,LOW);
+ }
+ // delay(500);
+ 
+
+}
